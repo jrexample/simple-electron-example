@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Simple Electron Example</title>
+</head>
+
+<body>
+    <h1>Simple Electron Example</h1>
+    <ul></ul>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+        const ul = document.querySelector('ul');
+
+        ipcRenderer.on('customer:add', function (e, item) {
+            const li = document.createElement('li');
+            const name = document.createTextNode(item);
+            li.appendChild(name);
+            ul.appendChild(li);
+        });
+
+        ipcRenderer.on('customer:clear', function () {
+            ul.innerHTML = '';
+        });
+
+        ul.addEventListener('dblclick', removeItem);
+
+        function removeItem(e) {
+            e.target.remove();
+        }
+    </script>
+</body>
+
+</html>
