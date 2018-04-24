@@ -7,7 +7,6 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 let mainWindow;
 
 const mainMenuTemplate = [
-    {},
     {
         label: 'File',
         submenu: [
